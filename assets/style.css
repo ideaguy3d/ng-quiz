@@ -1,0 +1,25 @@
+/*
+Julius Alvarado
+www.julius3d.com
+skills check app style rules
+*/
+
+html, body {
+    font-family: 'Roboto', sans-serif;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-size: 14px;
+}
+
+.skill-cell {
+    width: 230px;
+    border: 2px solid cornflowerblue;
+    border-radius: 20px;
+    padding: 12px;
+    display: inline-block;
+    margin: 8px 4px;
+    height: 250px;
+    max-height: 250px;
+    vertical-align: top;
+}

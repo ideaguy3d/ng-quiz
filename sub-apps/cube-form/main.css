@@ -1,0 +1,397 @@
+html, body {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    background: url(shadow.png) no-repeat center #F1F1EB;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    margin: 0;
+    padding: 0;
+}
+
+#viewport {
+    width: 380px;
+    height: 380px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin: -190px 0 0 -190px;
+    -webkit-perspective: 1000px;
+    -moz-perspective: 1000px;
+    perspective: 1000px;
+}
+
+#cube {
+    width: 100%;
+    height: 100%;
+    transform: translateZ(-190px) rotateY(0deg);
+    transform-style: preserve-3D;
+    transition: all 1s;
+}
+
+#cube.right-face {
+    transform: translateZ(-190px) rotateY(-90deg);
+}
+
+#cube.back-face {
+    transform: translateZ(-190px) rotateY(-180deg);
+}
+
+#cube.left-face {
+    transform: translateZ(-190px) rotateY(-270deg);
+}
+
+#cube.top-face {
+    transform: translateZ(-190px) rotateY(-270deg) rotateZ(-90deg);
+}
+
+#front, #back, #top, #bottom, #left, #right {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+}
+
+#front {
+    background: url(darkBG.jpg) repeat #333;
+    -webkit-transform: translateZ(190px);
+    -moz-transform: translateZ(190px);
+    transform: translateZ(190px);
+}
+
+#back {
+    background: url(lightBG.jpg) #FEFEFE;
+    -webkit-transform: translateZ(-190px) rotateY(180deg);
+    -moz-transform: translateZ(-190px) rotateY(180deg);
+    transform: translateZ(-190px) rotateY(180deg);
+}
+
+#top {
+    background: url(darkBG.jpg) repeat #333;
+    transform: translateY(-190px) rotateX(-270deg) rotateZ(90deg);
+}
+
+#bottom {
+    background: url(darkBG.jpg) repeat #333;
+    transform: translateY(190px) rotateX(-90deg);
+}
+
+#left {
+    background: url(lightBG.jpg) #FEFEFE;
+    -webkit-transform: translateX(-190px) rotateY(-90deg);
+    -moz-transform: translateX(-190px) rotateY(-90deg);
+    transform: translateX(-190px) rotateY(-90deg);
+}
+
+#right {
+    background: url(lightBG.jpg) #FEFEFE;
+    -webkit-transform: translateX(190px) rotateY(90deg);
+    -moz-transform: translateX(190px) rotateY(90deg);
+    transform: translateX(190px) rotateY(90deg);
+}
+
+/*Styling for the sides content*/
+a {
+    text-decoration: none;
+}
+
+#cube div #pic {
+    margin: 51px auto 0 auto;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    box-shadow: 2px 2px 3px hsla(0, 0%, 0%, .4);
+    border-radius: 50%;
+    background: #EEE;
+    padding: 4px;
+    overflow: hidden;
+    width: 161px;
+    height: 161px;
+    position: relative;
+}
+
+#cube div #pic img {
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+}
+
+#front h1 {
+    font-weight: normal;
+    text-align: center;
+    color: #EEE;
+    font-size: 1.6em;
+    padding: 0;
+    margin: 20px 0 0 0;
+}
+
+input {
+    -webkit-font-smoothing: antialiased;
+    outline: none;
+}
+
+#front input {
+    width: 150px;
+    margin: 20px auto 0 auto;
+    display: block;
+    font-size: .9em;
+    padding: 10px;
+    color: #777;
+    border: none;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    -webkit-box-shadow: inset 1px 1px 3px hsla(0, 0%, 0%, .5);
+    -moz-box-shadow: inset 1px 1px 3px hsla(0, 0%, 0%, .5);
+    box-shadow: inset 1px 1px 3px hsla(0, 0%, 0%, .5);
+    background: url(arrow.png) no-repeat right center #FFF;
+}
+
+#right input, textarea, #back input {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    width: 320px;
+    clear: both;
+    font-size: 1em;
+    padding: 10px;
+    margin: 20px auto 0 auto;
+    resize: none;
+    outline: none;
+    border-top: 1px solid #999;
+    border-left: 1px solid #CCC;
+    border-right: 1px solid #CCC;
+    border-bottom: 1px solid #CCC;
+    -webkit-box-shadow: inset 1px 1px 3px hsla(0, 0%, 0%, .3);
+    -moz-box-shadow: inset 1px 1px 2px hsla(0, 0%, 0%, .3);
+    box-shadow: inset 1px 1px 3px hsla(0, 0%, 0%, .3);
+    color: #777;
+    display: block;
+}
+
+#back iframe {
+    margin: 20px auto 0 auto;
+    display: block;
+}
+
+textarea {
+    height: 100px;
+    -webkit-font-smoothing: antialiased;
+}
+
+#back textarea {
+    height: 70px;
+}
+
+.back {
+    display: block;
+    height: 26px;
+    line-height: 26px;
+    padding: 0 0 0 38px;
+    background: url(prevous.png) no-repeat left center;
+    color: #666;
+    float: left;
+    font-size: 1em;
+    margin: 15px 0 0 30px;
+    -webkit-transition: margin .5s;
+    -moz-transition: margin .5s;
+    transition: margin .5s;
+}
+
+.back:hover {
+    margin: 15px 0 0 20px;
+}
+
+.nxt {
+    display: block;
+    height: 26px;
+    line-height: 26px;
+    padding: 0 38px 0 0;
+    background: url(next.png) no-repeat right center;
+    color: #666;
+    float: right;
+    font-size: 1em;
+    margin: 15px 30px 0 0;
+    -webkit-transition: margin .5s;
+    -moz-transition: margin .5s;
+    transition: margin .5s;
+}
+
+.nxt:hover {
+    margin: 15px 20px 0 0;
+}
+
+#left h1 {
+    font-weight: bold;
+    margin: 30px 0 0 30px;
+    padding: 0;
+    color: #666;
+    font-size: 1em;
+}
+
+#left p {
+    margin: 20px 30px 0 30px;
+    color: #666;
+    padding: 0;
+    font-size: .9em;
+    line-height: 1.5em;
+}
+
+#tick {
+    display: block;
+    margin: 150px auto 0 auto;
+}
+
+#top h1 {
+    text-align: center;
+    font-size: 1.4em;
+    margin: 20px auto 0 auto;
+    color: #DDD;
+    font-weight: normal;
+}
+
+#finish {
+    background: url(finish.png) no-repeat left 0px;
+    display: block;
+    height: 26px;
+    line-height: 26px;
+    padding: 0 0 0 38px;
+    color: #666;
+    float: none;
+    width: 45px;
+    font-size: 1em;
+    margin: 15px auto 0 auto;
+    -webkit-transition: all .5s;
+    -moz-transition: all .5s;
+    transition: all .5s;
+}
+
+#finish:hover {
+    background: url(finish.png) no-repeat left -26px;
+    color: #698C00;
+}
+
+/* jQuery Calendar Styles */
+#date, #dateOver {
+    position: absolute;
+    background: #FFF;
+    width: 650px;
+    margin-left: -135px;
+    height: 247px;
+}
+@-moz-document url-prefix() {
+    #date {
+        overflow: hidden;
+    }
+}
+
+#date.hidden, #dateOver {
+    display: none;
+}
+
+#dateOver {
+    background: url(grid.png) repeat-x left bottom #FFF;
+}
+
+#middleDark {
+    width: 217px;
+    background: #F9F9F8;
+    height: 100%;
+    margin: 0 auto;
+}
+
+#ui-datepicker-div {
+    background: #FFF;
+    -webkit-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.45);
+    -moz-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.45);
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.45);
+}
+
+table {
+    border-spacing: 0px;
+    float: left;
+}
+
+thead {
+    background: #E8ECF1;
+    color: #FFF;
+}
+
+.ui-datepicker-group-middle thead {
+    background: #E0E5EB;
+}
+
+thead th {
+    font-weight: normal;
+    padding: 5px;
+    font-size: 0.9em;
+}
+
+.ui-datepicker-title {
+    color: #666;
+    line-height: 35px;
+    font-size: .9em;
+    text-align: center;
+    width: auto;
+}
+
+.ui-datepicker-prev, .ui-datepicker-next {
+    display: block;
+    float: left;
+    height: 35px;
+    line-height: 35px;
+    padding: 0 .3em;
+    font-size: 1.3em;
+    font-family: "Courier New", Courier, monospace;
+    background: #EAEAEA;
+    color: #C4C4C4;
+    cursor: pointer;
+}
+
+#ui-datepicker-div .ui-datepicker-next {
+    float: right;
+}
+
+td {
+    border-right: 1px solid #EEE;
+    border-bottom: 1px solid #EEE;
+    text-align: center;
+    font-size: 0.8em;
+    width: 30px;
+    height: 30px;
+    padding: 0px;
+}
+
+td a {
+    color: #777;
+    width: auto;
+    height: 100%;
+    display: block;
+    line-height: 29px;
+}
+
+.ui-datepicker-group-middle {
+    background: url(grid.png) repeat-x left bottom #F9F9F8;
+    min-height: 247px;
+}
+
+#ui-datepicker-div .ui-datepicker-group-middle td {
+    border-right: 1px solid #DDD;
+    border-bottom: 1px solid #DDD;
+}
+
+td.ui-datepicker-current-day a {
+    background: #D7DBE1;
+    color: #FFF;
+}
+
+.ui-datepicker-group {
+    float: left;
+    width: 217px;
+}
+
+.ui-datepicker-row-break {
+    display: none;
+}
+
+div .ui-datepicker-next {
+    float: right;
+}

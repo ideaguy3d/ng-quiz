@@ -1,0 +1,85 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8"/>
+<title>CSS3D Cube</title>
+<link rel="stylesheet" type="text/css" href="main.css"/>
+</head>
+
+<body>
+<div id="viewport">
+	<div id="cube">
+    	<div id="front">
+        	<div id="pic"><img src="profile_pic.jpg" width="161" height="161" alt="Profile Picture"/></div>
+        	<h1>Envato</h1>
+           <input type="password" placeholder="Password" />
+       </div>
+       <div id="right">
+       		<input class="m40" type="text" placeholder="Name"/>
+           <div id="wrap">
+           	<input id="dateTrigger" type="text" placeholder="Date Joined"/>
+           	<div id="date"><div id="middleDark"></div></div>
+            	<div id="dateOver"></div>
+           </div>
+           <input type="text" placeholder="Email"/>
+           <textarea placeholder="Address"></textarea>
+           <a href="#" class="back">Back</a>
+           <a href="#" class="nxt">Next</a>
+       </div>
+       <div id="back">
+       		<!--<iframe src="//player.vimeo.com/video/42785517?title=0&amp;byline=0&amp;portrait=0" width="340" height="191" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+           <textarea placeholder="Description"></textarea>
+           <a href="#" class="back">Back</a>
+           <a href="#" class="nxt">Next</a>-->
+       </div>
+        <div id="left">
+        	<!--<h1>Profile Information</h1>
+           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent feugiat quam lacus, ut convallis sapien dapibus eget. Praesent nec arcu non urna mattis ultrices. Aenean hendrerit viverra augue, malesuada dapibus dui mattis non. Morbi mattis, nisl id pretium tempor, lacus erat semper ligula, a placerat libero justo vitae felis.</p>
+           <p>Duis in vehicula massa. Donec varius consequat dolor. Duis adipiscing faucibus lectus at viverra. Nam nec sapien diam. consectetur adipiscing elit, Praesent feugiat quam lacus malesuada.</p>
+       		<a href="#" id="finish">Finish</a>-->
+       </div>
+       <div id="top">
+       		<!--<img id="tick" src="tick.png" width="40" height="40" alt="tick"/>
+           <h1>Thank You</h1>-->
+       </div>
+       <div id="bottom"></div>
+    </div>
+</div>
+<script src="Modinizr.js" type="text/ecmascript"></script>
+<script src="jquery.js" type="text/ecmascript"></script>
+<script src="Jquery_Calendar.js" type="text/ecmascript"></script>
+<script src="oridomi.js" type="application/ecmascript"></script>
+<script type="application/ecmascript">
+$(function(){
+	$('#dateOver').datepicker({
+		numberOfMonths: 3,
+		prevText: '<',
+		nextText: '>'
+	});
+	
+	$('#date').oriDomi({
+		hPanels: 5,
+		touchEnabled: false,
+		speed: 600,
+		perspective: 500
+	})
+	.oriDomi('accordion', -100, 'top',{
+		callback: $('#date').addClass('hidden')
+	});
+	$('#dateTrigger').on('focus',function(){
+		$('#date').fadeIn(200).oriDomi().reset();
+		
+		$('#dateOver').find('*').addClass('NotMe');
+		
+		$('.ui-corner-all').on('mousedown',function(){
+			$('#dateOver').find('*').addClass('NotMe');
+		});
+		
+		setTimeout(function(){
+			$('#dateOver').fadeIn(200);
+		},600);
+	});
+});
+</script>
+</body>
+</html>

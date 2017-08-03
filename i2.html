@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="materialApp">
+<head>
+	<meta charset="UTF-8">
+	<title>Julius ES2015 Material</title>
+	<meta http-equiv="x-ua-compatible" content="IE=edge">
+	<meta name="description" content="An app to implement algorithms using es2015 & typescript">
+	<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+	
+	<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,500,700,400italic">
+	<link rel="stylesheet" href="./bower_components/angular-material/angular-material.min.css">
+	<link rel="stylesheet" href="./bower_components/angular-material-icons/angular-material-icons.css">
+	<link rel="stylesheet" href="./assets/app.css">
+	
+	<style type="text/css">
+		[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+			display: none !important;
+		}
+	</style>
+</head>
+
+<!-- give body row layout since I want to build this in a left to right fashion -->
+<body layout="row" ng-cloak ng-controller="mainCtrl as vm">
+<!-- layout is vert to make sure it streches out vertically -->
+<div ng-include="'dist/view/sidenav.html'" layout="vertical"></div>
+
+<!-- This is the parent wrapper for all of the content -->
+<div layout="column" flex id="wrapper">
+	<div ng-include="'dist/view/toolbar-header.html'"></div>
+	<md-content flex id="content">
+		<div ng-include="'dist/view/main-content.html'"></div>
+		<md-tabs md-dynamic-height md-stretch-tabs="always" md-selected="vm.tabIndex">
+			<md-tab label="Bio">
+				<div ng-include="'dist/view/tab-bio.html'"></div>
+			</md-tab>
+			<md-tab label="Notes">
+				<div ng-include="'dist/view/tab-notes.html'"></div>
+			</md-tab>
+		</md-tabs>
+	</md-content>
+</div>
+
+<!--------------------------------------->
+<!-- JavaScript Frameworks & Libraries -->
+<!--------------------------------------->
+<script src="./bower_components/jquery/dist/jquery.min.js"></script>
+<script src="./bower_components/angular/angular.js"></script>
+<script src="./bower_components/angular-animate/angular-animate.js"></script>
+<script src="./bower_components/angular-aria/angular-aria.min.js"></script>
+<script src="./bower_components/angular-material/angular-material.js"></script>
+<script src="./bower_components/angular-messages/angular-messages.js"></script>
+<script src="./bower_components/angular-material-icons/angular-material-icons.min.js"></script>
+
+<!--------------------------------------->
+<!---------- Custom JavaScript ---------->
+<!--------------------------------------->
+<script src="./dist/models.js"></script>
+<script src="./dist/services/userService.js"></script>
+<script src="./dist/controllers/addUserDialogCtrl.js"></script>
+<script src="./dist/controllers/contactPanelCtrl.js"></script>
+<script src="./dist/controllers/mainCtrl.js"></script>
+<script src="./dist/boot.js"></script>
+
+</body>
+</html>

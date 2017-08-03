@@ -1,0 +1,153 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="UTF-8"/>
+	<title>CSS3D Cube</title>
+	<link rel="stylesheet" type="text/css" href="main.css"/>
+</head>
+
+<body>
+<div id="viewport">
+	<div id="cube">
+		<!-- front side -->
+		<div id="front">
+			<div id="pic"><img src="profile_pic.jpg" width="161" height="161"
+			                   alt="Profile Picture"/></div>
+			<h1>Envato</h1>
+			<input id="inputNxt" type="password" placeholder="Password"/>
+		</div>
+		<!-- right side -->
+		<div id="right">
+			<input class="m40" type="text" placeholder="Name"/>
+			<div id="wrap">
+				<input id="dateTrigger" type="text" placeholder="Date Joined"/>
+				<div id="date">
+					<div id="middleDark"></div>
+				</div>
+				<div id="dateOver"></div>
+			</div>
+			<input type="text" placeholder="Email"/>
+			<textarea placeholder="Address"></textarea>
+			<a id="rBack" href="#" class="back">Back</a>
+			<a id="rNext" href="#" class="nxt">Next</a>
+		</div>
+		<!-- back side -->
+		<div id="back">
+			<iframe src="//player.vimeo.com/video/42785517?title=0&amp;byline=0&amp;portrait=0" width="340" height="191" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+			<textarea placeholder="Description"></textarea>
+			<a id="bBack" href="#" class="back">Back</a>
+			<a id="bNext" href="#" class="nxt">Next</a>
+		</div>
+		<!-- left side -->
+		<div id="left">
+			<h1>Profile Information</h1>
+			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent feugiat quam lacus, ut convallis sapien
+			   dapibus eget. Praesent nec arcu non urna mattis ultrices. Aenean hendrerit viverra augue, malesuada
+			   dapibus dui mattis non. Morbi mattis, nisl id pretium tempor, lacus erat semper ligula, a placerat libero
+			   justo vitae felis.</p>
+			<p>Duis in vehicula massa. Donec varius consequat dolor. Duis adipiscing faucibus lectus at viverra. Nam nec
+			   sapien diam. consectetur adipiscing elit, Praesent feugiat quam lacus malesuada.
+				<a href="#" id="goFront">Go to front</a>
+			</p>
+			
+			<a href="#" id="finish">Finish</a>
+		</div>
+		<!-- top side -->
+		<div id="top">
+			<img id="tick" src="tick.png" width="40" height="40" alt="tick"/>
+			<h1>Thank You</h1>
+		</div>
+		<!-- bottom side -->
+		<div id="bottom"></div>
+	</div>
+</div>
+<script src="Modinizr.js" type="text/ecmascript"></script>
+<script src="jquery.js" type="text/ecmascript"></script>
+<script src="Jquery_Calendar.js" type="text/ecmascript"></script>
+<script src="oridomi.js" type="application/ecmascript"></script>
+<script type="text/javascript">
+    (function ($) {
+
+
+        "use strict";
+        $(function () { // basically 'document.ready'
+            $('#dateOver').datepicker({
+                numberOfMonths: 3,
+                prevText: '<',
+                nextText: '>'
+            });
+
+            $('#date').oriDomi({
+                hPanels: 5,
+                touchEnabled: false,
+                speed: 600,
+                perspective: 500
+            }).oriDomi('accordion', -100, 'top', {
+                callback: $('#date').addClass('hidden')
+            });
+
+            $('#dateTrigger').on('focus', function () {
+                $('#date').fadeIn(200).oriDomi().reset();
+
+                // find all child elem and add class
+                $('#dateOver').find('*').addClass('NotMe');
+
+                // 'mousedown' makes sure func is invoked after target has been clicked
+                // rather than imm! when it is clicked
+                $('.ui-corner-all').on('mousedown', function () {
+                    $('#dateOver').find('*').addClass('NotMe');
+                });
+
+                setTimeout(function () {
+                    $('#dateOver').fadeIn(200);
+                }, 600);
+            });
+
+            $('body').on('click', function (e) {
+                if (!$(e.target).hasClass('NotMe')) {
+                    var dateOver = $('#dateOver');
+                    if (dateOver.is(':visible')) {
+                        var gDate = dateOver.datepicker({dateFormat: 'dd-mm-yy'}).val();
+                        $('#dateTrigger').val(gDate);
+                        dateOver.fadeOut(200, function () {
+                            $('#date').fadeOut(600).oriDomi().collapse();
+                        });
+                    }
+                }
+            });
+
+            $('#wrap').find('*').addClass('NotMe');
+
+            $('#inputNxt').on('focus', function () {
+                $('#cube').removeClass().addClass('right-face');
+            });
+
+            $('#rBack').on('click', function () {
+                $('#cube').removeClass();
+            });
+
+            $('#rNext').on('click', function () {
+                $('#cube').removeClass().addClass('back-face');
+            });
+
+            $('#bBack').on('click', function () {
+                $('#cube').removeClass().addClass('right-face');
+            });
+
+            $('#bNext').on('click', function () {
+                $('#cube').removeClass().addClass('left-face');
+            });
+
+            $('#finish').on('click', function () {
+                $('#cube').removeClass().addClass('top-face');
+            });
+
+            $('#goFront').on('click', function () {
+                $('#cube').removeClass();
+            });
+        }); // END OF: 'document.ready'
+    }(jQuery));
+
+</script>
+</body>
+</html>

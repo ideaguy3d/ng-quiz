@@ -1,0 +1,21 @@
+<div layout="row" style="height: 100%;">
+	<!-- layout is vert to make sure it streches out vertically -->
+	<aside ng-include="'dist/templates/sidenav.html'" layout="vertical"></aside>
+	
+	<!-- This is the parent wrapper for all of the content -->
+	<section layout="column" flex id="wrapper">
+		<div ng-include="'dist/templates/toolbar-header.html'"></div>
+		<md-content flex id="content">
+			<div ng-include="'dist/templates/main-content.html'"></div>
+			<md-tabs md-dynamic-height md-stretch-tabs="always" md-selected="vm.tabIndex">
+				<md-tab label="Bio">
+					<div ng-include="'dist/templates/tab-bio.html'"></div>
+				</md-tab>
+				<md-tab label="Notes">
+					<div ng-include="'dist/templates/tab-notes.html'"></div>
+				</md-tab>
+			</md-tabs>
+		</md-content>
+	</section>
+</div>
+

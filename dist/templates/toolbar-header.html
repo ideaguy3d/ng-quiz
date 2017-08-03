@@ -1,0 +1,33 @@
+<md-toolbar class="md-hue-2">
+    <div class="md-toolbar-tools">
+        <md-button hide-gt-sm ng-click="vm.toggleSideNav()" class="md-icon-button">
+            <!--
+            this way is much better because now I don't have to go around and find all the places I referenced the icons -->
+            <md-icon md-svg-icon="menu"></md-icon>
+        </md-button>
+        <h1>Julius Alvarado's Skill Manager</h1>
+
+        <!-- speed dial ui compo section wrapper -->
+        <md-fab-speed-dial md-direction="down" class="md-fling md-fab-top-right">
+            <!-- this will be static menu button that stays in place -->
+            <md-fab-trigger>
+                <md-button class="md-fab">
+                    <md-icon md-svg-icon="menu"></md-icon>
+                </md-button>
+            </md-fab-trigger>
+            <!-- this is what will fling down after button is pressed -->
+            <md-fab-actions>
+                <md-button class="md-fab md-raised md-mini"
+                           ng-click="vm.showContactOptions($event)">
+                    <ng-md-icon icon="face"></ng-md-icon>
+                    <md-tooltip md-direction="left">Contacts</md-tooltip>
+                </md-button>
+                <md-button class="md-fab md-raised md-mini"
+                           ng-click="vm.clearNotes($event)">
+                    <ng-md-icon icon="clear_all"></ng-md-icon>
+                    <md-tooltip md-direction="left">Clear all notes</md-tooltip>
+                </md-button>
+            </md-fab-actions>
+        </md-fab-speed-dial>
+    </div>
+</md-toolbar>

@@ -1,0 +1,64 @@
+<div>
+    <section id="my-quiz" ng-controller="QuizCtrl">
+        <div class="quiz-title">
+            <h1>{{ introMessage }}:</h1>
+            <h2 class="text-center">Topic: AngularJS</h2>
+        </div>
+        <!-- Progress div: -->
+        <div class="j-progress">
+            <div class="{{ ($index === activeQuestion) ? 'on' : 'off'}}
+			 {{ question.questionState === 'answered' ? 'answered' : 'unaswered' }}
+			 {{ question.correctness === 'correct' ? 'correct' : 'incorrect' }}"
+                 ng-repeat="question in myQuestions"></div>
+        </div>
+
+        <!-- Intro div: -->
+        <div class="intro {{ (activeQuestion > -1) ? 'inactive' : 'active' }}">
+            <h2>Intro</h2>
+            <p>Hi. This is a brief advanced level quiz of the Angular1 framework. Angular1 is still an awesome rockstar
+                framework compared to its' competitor Angular2. Angular2 really is a different framework despite
+                its' similar sounding name.</p>
+            <button class="btn btn-warning" ng-click="activeQuestion = 0">Begin</button>
+        </div>
+
+        <!-- Question div: -->
+        <div ng-repeat="question in myQuestions" class="question
+		{{ question.questionState === 'answered' ? 'answered' : 'unanswered' }}
+		{{ $index === activeQuestion ? 'active' : 'inactive' }}">
+            <p class="txt">{{ question.question }}</p>
+
+            <!-- Inner Loop Begins: -->
+            <p class="ans" ng-class="{
+			    'image': answer.image,
+			    'selected': isSelected($parent.$index, $index),
+			    'correct': isCorrect($parent.$index, $index)
+			   }" ng-style="{
+			    'background-image': 'url({{answer.image}})'
+			   }" ng-click="selectAnswer($parent.$index, $index)"
+               ng-repeat="answer in question.answers">
+                {{ answer.text }}
+            </p>
+            <!-- feedback: -->
+            <div class="feedback">
+                <p ng-show="question.correctness === 'correct'">
+                    Correct! Good job ^_^
+                </p>
+                <p ng-show="question.correctness === 'incorrect'">
+                    Wrong. Keep on studying. :/
+                </p>
+                <p>{{question.feedback}}</p>
+                <div class="btn btn-sm btn-info" ng-click="selectContinue()">
+                    <strong>Continue</strong>
+                </div>
+            </div>
+        </div>
+
+        <!-- Results div: -->
+        <div class="results {{ totalQuestions === activeQuestion ? 'active' : 'inactive' }}">
+            <h3>The Results</h3>
+            <p>{{ score }}/{{ totalQuestions }} score = {{percentScore}}%</p>
+            <p>Challenge your friends:</p>
+            <div class="share" ng-bind-html="createShareLinks(percentage)"></div>
+        </div>
+    </section>
+</div>

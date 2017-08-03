@@ -1,0 +1,28 @@
+<div class="container">
+	<h1 class="page-header">Click the Skills you're looking for:</h1>
+	<section class="row">
+		<div class="col-md-8">
+			<div class="panel panel-primary">
+				<!-- panel heading -->
+				<div class="panel-heading">
+					<h1 class="panel-title">Julius Alvarado's Skills</h1>
+				</div>
+				
+				<!-- panel body -->
+				<div class="panel-body">
+					<div class="skill-cell" ng-click="skill.parentSelect" ng-repeat="jSkill in skill.skillsArray">
+						<h4 class="skill-image text-center">{{ jSkill }}</h4>
+						<div class="skill-info">
+							<h3>I'm at an <strong>Advanced</strong> {{ jSkill }} level</h3>
+						</div>
+					</div>
+					
+				</div>
+			</div>
+		</div>
+		
+		<div class="col-md-4">
+			<h2 class="page-header">{{ skill.sideTitle }}</h2>
+		</div>
+	</section>
+</div>
