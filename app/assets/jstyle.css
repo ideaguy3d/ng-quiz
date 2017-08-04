@@ -1,0 +1,44 @@
+html, body {
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.red {
+    background-color: indianred;
+}
+
+.green {
+    background-color: forestgreen;
+}
+
+.blue {
+    background-color: dodgerblue;
+}
+md-toolbar {
+    margin: auto;
+}
+md-list-item > button {
+    width: 100%;
+    text-align: left !important;
+}
+
+#content {
+    padding: 6px 40px;
+}
+
+.j-avatar {
+    position: relative;
+    width: 128px;
+    height: 128px;
+    border: 1px solid #303030;
+    border-radius: 50%;
+    display: inline-block;
+    overflow: hidden;
+    margin: 0;
+    vertical-align: middle;
+    zoom: 0.7;
+    /*transform: translateZ(0);*/
+}
