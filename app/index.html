@@ -17,11 +17,10 @@
 	<link rel="stylesheet" href="assets/jstyle.css">
 </head>
 
-
 <body ng-app="MyApp" ng-controller="CoreCtrl">
 
 <!-- Horizontal Navigation -->
-<header class="site-header header-fullwidth header-sticky">
+<header ng-if="!ccIsAuth" class="site-header header-fullwidth header-sticky">
 	<div class="navbar">
 		<div class="inner">
 			<!-- Site Logo -->
@@ -33,7 +32,8 @@
 				<!-- Alignment classes: pull-right, pull-left. -->
 				<div class="toolbox pull-right">
 					<div class="inner">
-						<a href="#" class="btn btn-floating btn-primary waves-effect waves-light">Sign up</a>
+						<a ui-sref="login" class="btn btn-floating btn-gray-alt waves-effect waves-light">Login</a>&nbsp;
+						<a ui-sref="signup" class="btn btn-floating btn-primary waves-effect waves-light">Sign up</a>
 					</div>
 				</div><!-- .toolbox -->
 				<!-- Alignment classes: pull-right, pull-center. No class will align menu on the left. -->
@@ -76,5 +76,8 @@
 <!---------- Custom JavaScript ---------->
 <!--------------------------------------->
 <script src="app.js"></script>
+<script src="CoreCtrl.js"></script>
+<script src="services/auth.ser.js"></script>
+<script src="states/auth/ctrl.auth.js"></script>
 </body>
 </html>

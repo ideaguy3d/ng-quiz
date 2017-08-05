@@ -1,0 +1,11 @@
+<!-- Login -->
+<div ng-init="ccIsAuth = ccSetAuth(true)">
+	<br>
+	<a ui-sref="home" class="btn btn-floating btn-default waves-effect waves-light">Go Home</a>
+	<br>
+	<h1>Login</h1>
+	<h2>message = {{ auth.test1 }}</h2>
+	
+	<input type="text" ng-model="auth.userEmail">
+	<button ng-click="auth.login()">Login</button>
+</div>
