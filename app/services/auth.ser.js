@@ -8,10 +8,11 @@
         function ($http) {
             const actionUrl = 'api/actions.php';
             let loginSignup = function (data) {
-                let action = 'loginSignup';
-                return $http.get(
-                    `${actionUrl}?action=${encodeURIComponent(action)}&email=${encodeURIComponent(data.email)}&password=${encodeURIComponent(data.password)}&loginActive=${encodeURIComponent(data.loginActive)}`
-                );
+                let action = `?action=${encodeURIComponent(data.loginSignup)}`;
+                let email =`&email=${encodeURIComponent(data.email)}`;
+                let password = `&password=${encodeURIComponent(data.password)}`;
+                let loginActive = `&loginActive=${encodeURIComponent(data.loginActive)}`;
+                return $http.get(actionUrl+action+email+password+loginActive);
             };
             return {
                 loginSignup: loginSignup

@@ -10,6 +10,6 @@ api/.idea/workspace.xml
 **/bower_components
 app/ui.html
 **/app-info.txt
-api/jref
+app/api/jref
 app/img
 app/assets

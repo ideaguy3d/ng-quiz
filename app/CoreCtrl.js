@@ -8,7 +8,7 @@
     app.controller("CoreCtrl", ["$scope", "$mdDialog",
         function ($scope, $mdDialog) {
             $scope.status = "";
-            $scope.ccIsAuth = false;
+            $scope.ccIsAuth = true;
 
             $scope.ccSetAuth = function (b) {
                 $scope.ccIsAuth = b;

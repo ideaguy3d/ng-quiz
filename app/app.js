@@ -22,8 +22,10 @@
                 })
                 .state('signup', {
                     url: '/signup',
-                    templateUrl: './states/auth/view.signup.html'
-                })
+                    templateUrl: './states/auth/view.signup.html',
+                    controller: 'AuthCtrl',
+                    controllerAs: 'auth'
+                });
             $urlRouterProvider.otherwise('home');
         });
 }());

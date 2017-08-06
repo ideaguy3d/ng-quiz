@@ -9,18 +9,31 @@
         function (phpAuthSer) {
             let vm = this;
             vm.userEmail = "";
-            vm.test1 = "Ello from AuthCtrl ^_^/";
-            let loginData = {
-                email: vm.userEmail,
-                password: "pass",
-                loginActive: true
-            };
-            vm.login = function(){
-                phpAuthSer.loginSignup(loginData).then(function(res){
-                    console.log(res);
-                    alert(res.data);
+            vm.userPassword = "";
+
+            vm.login = function () {
+                let loginData = {
+                    loginSignup: "loginSignup",
+                    email: vm.userEmail,
+                    password: vm.userPassword,
+                    loginActive: "1"
+                };
+                phpAuthSer.loginSignup(loginData).then(function (res) {
+                    console.log(res.data);
                 });
             };
+
+            vm.signup = function () {
+                let signupData = {
+                    loginSignup: "loginSignup",
+                    email: vm.userEmail,
+                    password: vm.userPassword,
+                    loginActive: "0"
+                };
+                phpAuthSer.loginSignup(signupData).then((res) => {
+                    console.log(res.data);
+                });
+            }
         }
     ]);
 }());

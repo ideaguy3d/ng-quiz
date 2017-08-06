@@ -1,11 +1,25 @@
 <!-- Login -->
-<div ng-init="ccIsAuth = ccSetAuth(true)">
-	<br>
-	<a ui-sref="home" class="btn btn-floating btn-default waves-effect waves-light">Go Home</a>
+<div ng-init="ccIsAuth = ccSetAuth(true)" class="container">
 	<br>
 	<h1>Login</h1>
-	<h2>message = {{ auth.test1 }}</h2>
-	
-	<input type="text" ng-model="auth.userEmail">
-	<button ng-click="auth.login()">Login</button>
+	<form ng-submit="auth.login()">
+		<div class="space-bottom" >
+			<div class="row">
+				<!-- email -->
+				<div class="col-sm-4">
+					<div class="form-input">
+						<input type="email" placeholder="Email" ng-model="auth.userEmail">
+					</div>
+				</div>
+				<!-- password -->
+				<div class="col-sm-4">
+					<div class="form-input valid">
+						<input type="password" ng-model="auth.userPassword" placeholder="password">
+					</div>
+				</div>
+			</div>
+			<button type="submit" class="btn btn-floating btn-primary waves-effect waves-light">Login</button>
+			<a ui-sref="home" class="btn btn-floating btn-default waves-effect waves-light">Cancel</a>
+		</div>
+	</form>
 </div>
