@@ -9,6 +9,8 @@
                 .state('home', {
                     url: '/home',
                     templateUrl: './states/home/view.home.html',
+                    controller: 'HomePageCtrl',
+                    controllerAs: 'homePage'
                 })
                 .state('quiz', {
                     url: '/quiz',

@@ -5,11 +5,12 @@
 (function () {
     "use strict";
 
-    angular.module("MyApp").controller('AuthCtrl', ["phpAuthSer",
-        function (phpAuthSer) {
+    angular.module("MyApp").controller('AuthCtrl', ["phpDataSer", "$location",
+        function (phpDataSer, $location) {
             let vm = this;
             vm.userEmail = "";
             vm.userPassword = "";
+            vm.loginError = "";
 
             vm.login = function () {
                 let loginData = {
@@ -18,8 +19,16 @@
                     password: vm.userPassword,
                     loginActive: "1"
                 };
-                phpAuthSer.loginSignup(loginData).then(function (res) {
+
+                phpDataSer.loginSignup(loginData).then(function (res) {
                     console.log(res.data);
+                    
+                    if(res.data !== "1") {
+                        console.log(res.data);
+                        vm.loginError = res.data; 
+                    }  else {
+                        $location.url("/home");
+                    }
                 });
             };
 
@@ -30,8 +39,9 @@
                     password: vm.userPassword,
                     loginActive: "0"
                 };
-                phpAuthSer.loginSignup(signupData).then((res) => {
+                phpDataSer.loginSignup(signupData).then((res) => {
                     console.log(res.data);
+                    $location.url("/home")
                 });
             }
         }

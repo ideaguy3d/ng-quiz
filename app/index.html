@@ -24,24 +24,20 @@
 	<div class="navbar">
 		<div class="inner">
 			<!-- Site Logo -->
-			<a href="index.html" class="site-logo">
-				<img src="img/logo.png" alt="Unison">
-			</a>
+			<h3><a href="index.html" class="site-logo">Julius3D.com</a></h3>
 			<!-- Main Navigation -->
 			<nav class="main-navigation">
-				<!-- Alignment classes: pull-right, pull-left. -->
 				<div class="toolbox pull-right">
 					<div class="inner">
 						<a ui-sref="login" class="btn btn-floating btn-gray-alt waves-effect waves-light">Login</a>&nbsp;
 						<a ui-sref="signup" class="btn btn-floating btn-primary waves-effect waves-light">Sign up</a>
 					</div>
-				</div><!-- .toolbox -->
-				<!-- Alignment classes: pull-right, pull-center. No class will align menu on the left. -->
+				</div>
 				<ul class="menu pull-right">
 					<li ui-sref-active="current-menu-item"><a ui-sref="home">Home</a></li>
 					<li ui-sref-active="current-menu-item"><a ui-sref="quiz">Quiz</a></li>
-				</ul><!-- .menu -->
-			</nav><!-- .main-navigation -->
+				</ul>
+			</nav>
 			
 			<!-- Mobile Menu Toggle -->
 			<!-- Visible only when viewport is 991px and less. Can be changed via $nav-collapse variables in _variables.scss -->
@@ -77,7 +73,9 @@
 <!--------------------------------------->
 <script src="app.js"></script>
 <script src="CoreCtrl.js"></script>
-<script src="services/auth.ser.js"></script>
+<script src="services/php.data.ser.js"></script>
 <script src="states/auth/ctrl.auth.js"></script>
+<script src="states/home/ctrl.home.js"></script>
+
 </body>
 </html>

@@ -26,8 +26,6 @@ if ($_GET['action'] == 'loginSignup') {
         exit();
     }
 
-
-
     if ($_GET['loginActive'] == "0") { // "0" = user is trying to sign up
         $query = "select * from users where email = '$emailReal' limit 1";
         $result = mysqli_query($link, $query);
@@ -46,15 +44,16 @@ if ($_GET['action'] == 'loginSignup') {
                 $error = "could not create user";
             };
         }
-    } else { // "1" = user is trying to login
+    }
+    else { // "1" = user is trying to login
         $query = "select * from users where email = '$emailReal' LIMIT 1";
         $result = mysqli_query($link, $query);
-        // this time I actually want to get a result
+        // this time I actually want to use the result here in php
         $row = mysqli_fetch_assoc($result);
         if($row['password'] == md5(md5($row['id']).$_GET['password'])) {
             echo 1;
         } else {
-            $error = "could not find username/password"; 
+            $error = "could not find username/password";
         }
     }
 
@@ -63,3 +62,4 @@ if ($_GET['action'] == 'loginSignup') {
         exit();
     }
 }
+

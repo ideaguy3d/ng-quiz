@@ -2,6 +2,7 @@
 <div ng-init="ccIsAuth = ccSetAuth(true)" class="container">
 	<br>
 	<h1>Login</h1>
+	<h2 ng-if="auth.loginError">{{auth.loginError}}</h2>
 	<form ng-submit="auth.login()">
 		<div class="space-bottom" >
 			<div class="row">

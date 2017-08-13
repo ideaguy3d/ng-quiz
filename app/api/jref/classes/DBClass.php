@@ -2,23 +2,6 @@
 
 class DBClass
 {
-
-    /*
-     *
-$host_name = "db670527136.db.1and1.com";
-$database = "db670527136";
-$user_name = "dbo670527136";
-$password = "<Enter your password here.>";
-
-$dbh = null;
-try {
-  $dbh = new PDO("mysql:host=$host_name; dbname=$database;", $user_name, $password);
-} catch (PDOException $e) {
-  echo "Error!: " . $e->getMessage() . "<br/>";
-  die();
-}
-     * */
-
     private static $DB_CONNECTIONSTRING = 'sqlite:/xampp/htdocs/ps-ng-php/m4updatedBackend/db/countries.db';
     private static $DB_USERNAME = '';
     private static $DB_PASSWORD = '';

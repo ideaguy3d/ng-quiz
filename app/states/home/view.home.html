@@ -1,4 +1,20 @@
-<div ng-init="ccIsAuth = ccSetAuth(false)">
-	<br><br>
-	<h1>Build Something!</h1>
+<div ng-init="ccIsAuth = ccSetAuth(false)" style="height: 100%;">
+	<br>
+	<h1>Recent Scores</h1>
+	<section class="j-container" layout="row" flex>
+		<md-content flex>
+			<md-list>
+				<md-list-item ng-repeat="score in homePage.scores">
+					<md-button>
+						<md-icon class="j-avatar" md-svg-src="assets/svg/coder1.svg"></md-icon>
+						&nbsp; User{{ score.userid }} Scored {{ score.score }} | They said "{{ score.comment }}"
+					</md-button>
+				</md-list-item>
+			</md-list>
+		</md-content>
+		<md-sidenav md-is-locked-open="true">
+			Search: <input type="text">
+			<button style="width: 50%" class="btn btn-floating btn-gray-alt waves-effect waves-light">Find</button>
+		</md-sidenav>
+	</section>
 </div>
