@@ -66,6 +66,7 @@ if ($_GET['action'] == 'loginSignup') {
 
 //action=toggleFollow
 if($_GET['action'] == 'toggleFollow') {
-    
+    $query = "select * from isFollowing where email = $emailReal";
+    $result = mysqli_query($link, $query);
 }
 

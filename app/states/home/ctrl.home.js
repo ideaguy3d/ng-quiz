@@ -20,6 +20,7 @@
                     action: "toggleFollow",
                     user: uid
                 };
+                console.log("uid = "+uid);
                 phpDataSer.toggleFollow(data).then((res) => {
                     console.log(res.data);
                 });

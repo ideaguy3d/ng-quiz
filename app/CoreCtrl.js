@@ -5,12 +5,13 @@
     "use strict";
 
     let app = angular.module('MyApp');
-    app.controller("CoreCtrl", ["$scope", "$mdDialog",
-        function ($scope, $mdDialog) {
+    app.controller("CoreCtrl", ["$scope", "$mdDialog", "phpDataSer",
+        function ($scope, $mdDialog, phpDataSer) {
             $scope.status = "";
             $scope.ccIsAuth = true;
 
             $scope.ccSetAuth = function (b) {
+                $scope.ccCurrentUser = phpDataSer.getCurrentUser();
                 $scope.ccIsAuth = b;
             };
             // md service for dialog

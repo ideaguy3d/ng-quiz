@@ -15,9 +15,15 @@
 	<!--------------------------------------->
 	<link rel="stylesheet" href="assets/styles.css">
 	<link rel="stylesheet" href="assets/jstyle.css">
+	
+	<style type="text/css">
+		[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+			display: none !important;
+		}
+	</style>
 </head>
 
-<body ng-app="MyApp" ng-controller="CoreCtrl">
+<body ng-app="MyApp" ng-controller="CoreCtrl" ng-cloak>
 
 <!-- Horizontal Navigation -->
 <header ng-if="!ccIsAuth" class="site-header header-fullwidth header-sticky">
@@ -27,10 +33,14 @@
 			<h3><a href="index.html" class="site-logo">quiz.julius3d.com</a></h3>
 			<!-- Main Navigation -->
 			<nav class="main-navigation">
+				<!-- login/signup buttons -->
 				<div class="toolbox pull-right">
 					<div class="inner">
-						<a ui-sref="login" class="btn btn-floating btn-gray-alt waves-effect waves-light">Login</a>&nbsp;
-						<a ui-sref="signup" class="btn btn-floating btn-primary waves-effect waves-light">Sign up</a>
+						{{ ccCurrentUser }}
+						<div ng-if="!ccCurrentUser">
+							<a ui-sref="login" class="btn btn-floating btn-gray-alt waves-effect waves-light">Login</a>&nbsp;
+							<a ui-sref="signup" class="btn btn-floating btn-primary waves-effect waves-light">Signup</a>
+						</div>
 					</div>
 				</div>
 				<ul class="menu pull-right">

@@ -17,16 +17,25 @@
             let getScores = function () {
                 return $http.get("api/?action=getScores&type=public");
             };
-
             let toggleFollow = function (data) {
                 let action = `action=${encodeURIComponent(data.action)}`;
-                let user = `&user=${encodeURIComponent(data.uid)}`;
-                $http.get(actionUrl + action + user);
+                let user = `&user=${encodeURIComponent(data.user)}`;
+                return $http.get(actionUrl + action + user);
+            };
+            let currentUser = "";
+            let getCurrentUser = function () {
+                return currentUser;
+            };
+            let setCurrentUser = function (cur) {
+                console.log("setCurrentUser() invoked.");
+                currentUser = cur;
             };
             return {
                 loginSignup: loginSignup,
                 getScores: getScores,
-                toggleFollow: toggleFollow
+                toggleFollow: toggleFollow,
+                setCurrentUser: setCurrentUser,
+                getCurrentUser: getCurrentUser
             }
         }
     ]);
