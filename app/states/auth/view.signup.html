@@ -1,14 +1,20 @@
 <!-- Sign up -->
 <div ng-init="ccIsAuth = ccSetAuth(true)" class="container">
 	<br>
-	<h1>Sign up</h1>
+	<h1>Why Sign up?</h1>
+	<ol>
+		<li><p>To save your quiz scores</p></li>
+		<li><p>You could always just take the quiz but your score won't get saved</p></li>
+		<li><p>No email required, just a <b>username</b> and <b>password</b></p></li>
+	</ol>
+	
 	<form ng-submit="auth.signup()">
 	<div class="space-bottom" >
 		<div class="row">
 			<!-- email -->
 			<div class="col-sm-4">
 				<div class="form-input">
-					<input type="email" placeholder="Email" ng-model="auth.userEmail">
+					<input type="text" placeholder="Your username" ng-model="auth.userEmail">
 				</div>
 			</div>
 			<!-- password -->

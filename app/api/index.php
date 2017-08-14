@@ -23,11 +23,18 @@ if ($_GET['action'] == 'getScores') {
     } else {
         $scores = array();
 
+        // get all the records from the db
         while ($row = mysqli_fetch_assoc($result)) {
+            $row['zTimeSince'] = time_since(time() - strtotime($row['datetime']));
             array_push($scores, $row);
         }
+
+        // return JSON data
         echo json_encode($scores);
     }
+} else {
+    echo"\n\n";
+    echo "Start debugging stuff and seeing output !!";
 }
 
 //

@@ -2,19 +2,45 @@
 	<br>
 	<h1>Recent Scores</h1>
 	<section class="j-container" layout="row" flex>
+		<!-- Left Side of page -->
 		<md-content flex>
 			<md-list>
 				<md-list-item ng-repeat="score in homePage.scores">
+					<!-- Recent Scores -->
 					<md-button>
 						<md-icon class="j-avatar" md-svg-src="assets/svg/coder1.svg"></md-icon>
-						&nbsp; User{{ score.userid }} Scored {{ score.score }} | They said "{{ score.comment }}"
+						&nbsp; <b>User-{{ score.userid }} Scored {{ score.score }}%</b> {{ score.zTimeSince }} ago |
+						&nbsp;<small>They said</small> <i>"{{ score.comment }}"</i>
+					</md-button>
+					<!-- Follow Button -->
+					<md-button class="md-raised" aria-label="Follow" style="width: 96px"
+					           ng-click="homePage.followUser(score.userid)">
+						<small>Follow</small>
 					</md-button>
 				</md-list-item>
 			</md-list>
 		</md-content>
-		<md-sidenav md-is-locked-open="true">
-			Search: <input type="text">
-			<button style="width: 50%" class="btn btn-floating btn-gray-alt waves-effect waves-light">Find</button>
+		
+		<!-- Right Side of page -->
+		<md-sidenav md-is-locked-open="true" style="padding: 12px">
+			<md-input-container>
+				<label for="search">Search</label>
+				<input id="search" ng-model="homePage.search">
+				<button style="width: 50%" ng-click="homePage.searchFor()"
+				        class="btn btn-floating btn-gray waves-effect waves-light">
+					Find
+				</button>
+			</md-input-container>
+			<md-input-container class="md-block">
+				<label for="comment">Comment</label>
+				<textarea id="comment" ng-model="homePage.comment" md-maxlength="150"
+				          rows="2" md-select-on-focus>
+				</textarea>
+				<button style="width: 50%" ng-click="homePage.writeComment()"
+				        class="btn btn-floating btn-gray waves-effect waves-light">
+					Comment
+				</button>
+			</md-input-container>
 		</md-sidenav>
 	</section>
 </div>

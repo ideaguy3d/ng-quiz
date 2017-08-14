@@ -8,6 +8,7 @@
 
 include("functions/functions.php");
 
+// action=loginSignup
 if ($_GET['action'] == 'loginSignup') {
     $error = "";
     $emailReal = mysqli_real_escape_string($link, $_GET['email']);
@@ -61,5 +62,10 @@ if ($_GET['action'] == 'loginSignup') {
         echo $error;
         exit();
     }
+}
+
+//action=toggleFollow
+if($_GET['action'] == 'toggleFollow') {
+    
 }
 
