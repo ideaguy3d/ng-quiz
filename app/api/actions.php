@@ -33,12 +33,11 @@ if ($_GET['action'] == 'loginSignup') {
         $rows = @mysqli_num_rows($result);
         if ($rows > 0) {
             $error = "that email is taken";
-        }
-        else {
+        } else {
             $query = "insert into users (`email`, `password`) values ('$emailReal', '$pwReal')";
             if (mysqli_query($link, $query)) {
-                $pwUpdate = md5(md5(mysqli_insert_id($link)).$_GET['password']);
-                $query = "update users set password = '$pwUpdate' where id = '".mysqli_insert_id($link)."' limit 1";
+                $pwUpdate = md5(md5(mysqli_insert_id($link)) . $_GET['password']);
+                $query = "update users set password = '$pwUpdate' where id = '" . mysqli_insert_id($link) . "' limit 1";
                 mysqli_query($link, $query);
                 echo 1;
             } else {
@@ -46,13 +45,13 @@ if ($_GET['action'] == 'loginSignup') {
             };
         }
     }
-    else { // "1" = user is trying to login
+    else if($_GET['loginActive'] == "1") { // "1" = user is trying to login
         $query = "select * from users where email = '$emailReal' LIMIT 1";
         $result = mysqli_query($link, $query);
         // this time I actually want to use the result here in php
         $row = mysqli_fetch_assoc($result);
-        if($row['password'] == md5(md5($row['id']).$_GET['password'])) {
-            echo 1;
+        if ($row['password'] == md5(md5($row['id']) . $_GET['password'])) {
+            echo $row['id'];
         } else {
             $error = "could not find username/password";
         }
@@ -65,8 +64,22 @@ if ($_GET['action'] == 'loginSignup') {
 }
 
 //action=toggleFollow
-if($_GET['action'] == 'toggleFollow') {
-    $query = "select * from isFollowing where email = $emailReal";
+if ($_GET['action'] == 'toggleFollow') {
+    $curUserReal = mysqli_real_escape_string($link, $_GET['curUser']);
+    $userToFollowReal = mysqli_real_escape_string($link, $_GET['userToFollow']);
+
+    $query = "select * from isFollowing where follower = $curUserReal and isFollowing = $userToFollowReal LIMIT 1";
     $result = mysqli_query($link, $query);
+
+    if (@mysqli_num_rows($result) > 0) { // user is already following who ever it is they clicked on
+        $row = mysqli_fetch_assoc($result);
+        $delQuery = "DELETE FROM isFollowing WHERE id = " . mysqli_real_escape_string($link, $row['id']) . " LIMIT 1";
+        mysqli_query($link, $delQuery);
+        echo "1";
+    } else { // the user is NOT following the user they clicked on
+        $inQuery = "insert into isFollowing (follower, isFollowing) values ($curUserReal, $userToFollowReal)";
+        mysqli_query($link, $inQuery);
+        print_r($_GET);
+    }
 }
 

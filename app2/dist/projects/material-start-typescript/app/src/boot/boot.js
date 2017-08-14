@@ -1,5 +1,5 @@
-"use strict";
 /// <reference path="../../../typings/index.d.ts" />
+"use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 // Import our Angular dependencies
 var angular = require("angular");

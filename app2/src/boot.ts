@@ -40,6 +40,8 @@ module ContactManagerApp {
             //
             //use ".definePalette({});" for complete customization
         })
+
+        //-- The Front End Routing Configuration:
         .config(($stateProvider, $urlRouterProvider) => {
             $stateProvider
                 .state('home', {

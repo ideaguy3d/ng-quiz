@@ -21,12 +21,14 @@
                 };
 
                 phpDataSer.loginSignup(loginData).then(function (res) {
-                    console.log(res.data);
-                    
-                    if(res.data !== "1") { // there was an error
-                        vm.loginError = res.data; 
+                    if(!parseInt(res.data)) { // there was an error i.e. wrong password, etc.
+                        vm.loginError = "ERROR: "+res.data;
                     }  else {
-                        phpDataSer.setCurrentUser(vm.username);
+                        let userInfo = {
+                            username: vm.username,
+                            userId: res.data
+                        };
+                        phpDataSer.setCurrentUser(userInfo);
                         $location.url("/home");
                     }
                 });

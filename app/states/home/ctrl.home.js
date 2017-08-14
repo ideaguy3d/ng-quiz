@@ -12,18 +12,26 @@
             vm.searchFor = function () {
 
             };
+
             vm.writeComment = function () {
 
             };
+
             vm.followUser = function (uid) {
                 let data = {
                     action: "toggleFollow",
                     user: uid
                 };
-                console.log("uid = "+uid);
-                phpDataSer.toggleFollow(data).then((res) => {
-                    console.log(res.data);
-                });
+                let uInfo = phpDataSer.getCurrentUser();
+                if (!uInfo.username) {
+                    alert("Cannot follow anyone since you're not logged in.");
+                } else {
+                    phpDataSer
+                        .toggleFollow(data)
+                        .then((res) => {
+                            console.log(res.data);
+                        });
+                }
             };
 
             phpDataSer.getScores().then(function (res) {

@@ -11,7 +11,7 @@
             $scope.ccIsAuth = true;
 
             $scope.ccSetAuth = function (b) {
-                $scope.ccCurrentUser = phpDataSer.getCurrentUser();
+                $scope.ccCurrentUser = phpDataSer.getCurrentUser().username;
                 $scope.ccIsAuth = b;
             };
             // md service for dialog
