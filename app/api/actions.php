@@ -75,11 +75,11 @@ if ($_GET['action'] == 'toggleFollow') {
         $row = mysqli_fetch_assoc($result);
         $delQuery = "DELETE FROM isFollowing WHERE id = " . mysqli_real_escape_string($link, $row['id']) . " LIMIT 1";
         mysqli_query($link, $delQuery);
-        echo "1";
+        echo "1"; // "1" means user has been unfollowed
     } else { // the user is NOT following the user they clicked on
         $inQuery = "insert into isFollowing (follower, isFollowing) values ($curUserReal, $userToFollowReal)";
         mysqli_query($link, $inQuery);
-        print_r($_GET);
+        echo "2";
     }
 }
 

@@ -26,10 +26,13 @@
                 if (!uInfo.username) {
                     alert("Cannot follow anyone since you're not logged in.");
                 } else {
-                    phpDataSer
-                        .toggleFollow(data)
+                    phpDataSer.toggleFollow(data)
                         .then((res) => {
-                            console.log(res.data);
+                            if(res.data === "1") { // user has been un-followed
+                                jQuery("button[data-userId='"+uid+"']").html("Follow");
+                            } else if (res.data === "2") { // user has followed
+                                jQuery("button[data-userId='"+uid+"']").html("Unfollow");
+                            }
                         });
                 }
             };

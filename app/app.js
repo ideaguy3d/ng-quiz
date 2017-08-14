@@ -16,6 +16,12 @@
                     url: '/quiz',
                     templateUrl: './states/quiz/view.quiz.html',
                 })
+                .state('timeline', {
+                    url: '/timeline',
+                    templateUrl: './states/timeline/view.timeline.html',
+                    controller: 'TimelineCtrl',
+                    controllerAs: 'timeline'
+                })
                 .state('login', {
                     url: '/login',
                     templateUrl: './states/auth/view.login.html',

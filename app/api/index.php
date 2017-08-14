@@ -12,8 +12,11 @@ header('Content-type: application/json');
 echo ")]}'\n";
 
 if ($_GET['action'] == 'getScores') {
-    if($_GET['type'] == 'public') {
+    $type = $_GET['type'];
+    if($type == 'public') {
         $whereClause = "";
+    } else if ($type == 'following') {
+        $whereClause = ""; 
     }
 
     $query = "select * from scores order by `datetime` desc limit 10";
