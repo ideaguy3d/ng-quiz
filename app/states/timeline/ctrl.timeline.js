@@ -5,9 +5,13 @@
 (function () {
     "use strict";
 
-    angular.module("MyApp").controller('TimelineCtrl', [
-        function () {
-            
+    angular.module("MyApp").controller('TimelineCtrl', ['phpDataSer', 'userIsLoggedIn',
+        function (phpDataSer, userIsLoggedIn) {
+            const vm = this;
+            userIsLoggedIn();
+            phpDataSer.getScoresFromFollowing().then(function(res){
+                vm.scoresFromFollowing = res.data;
+            });
         }
     ]);
 }());

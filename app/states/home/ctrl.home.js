@@ -22,23 +22,26 @@
                     action: "toggleFollow",
                     user: uid
                 };
+
                 let uInfo = phpDataSer.getCurrentUser();
+
                 if (!uInfo.username) {
                     alert("Cannot follow anyone since you're not logged in.");
-                } else {
+                }
+                else {
                     phpDataSer.toggleFollow(data)
                         .then((res) => {
-                            if(res.data === "1") { // user has been un-followed
-                                jQuery("button[data-userId='"+uid+"']").html("Follow");
-                            } else if (res.data === "2") { // user has followed
-                                jQuery("button[data-userId='"+uid+"']").html("Unfollow");
+                            if (res.data === "1") { // user has been un-followed
+                                jQuery("button[data-userId='" + uid + "']").html("Follow");
+                            }
+                            else if (res.data === "2") { // user has followed
+                                jQuery("button[data-userId='" + uid + "']").html("Unfollow");
                             }
                         });
                 }
             };
 
             phpDataSer.getScores().then(function (res) {
-                // console.log(res.data);
                 vm.scores = res.data;
             });
         }

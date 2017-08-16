@@ -9,6 +9,7 @@
         function ($scope, $mdDialog, phpDataSer) {
             $scope.status = "";
             $scope.ccIsAuth = true;
+            $scope.ccCurrentUser = "";
 
             $scope.ccSetAuth = function (b) {
                 $scope.ccCurrentUser = phpDataSer.getCurrentUser().username;

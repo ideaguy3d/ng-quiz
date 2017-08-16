@@ -20,7 +20,27 @@
                     url: '/timeline',
                     templateUrl: './states/timeline/view.timeline.html',
                     controller: 'TimelineCtrl',
-                    controllerAs: 'timeline'
+                    controllerAs: 'timeline',
+                    resolve: {
+                        userIsLoggedIn: function (phpDataSer, $state, $q) {
+                            let prom = $q.defer();
+
+                            prom.notify("def.notify...");
+
+                            prom.resolve(function(){
+                                if (!phpDataSer.getCurrentUser().username) {
+                                    $state.go("home");
+                                    return -1;
+                                }
+                            });
+
+                            prom.reject(function(){
+                                return 1;
+                            })
+
+                            return prom.promise;
+                        }
+                    }
                 })
                 .state('login', {
                     url: '/login',

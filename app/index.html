@@ -26,6 +26,7 @@
 <body ng-app="MyApp" ng-controller="CoreCtrl" ng-cloak>
 
 <!-- Horizontal Navigation -->
+<!-- ccIsAuth checks to see if user is in signup or login view state -->
 <header ng-if="!ccIsAuth" class="site-header header-fullwidth header-sticky">
 	<div class="navbar">
 		<div class="inner">
@@ -46,7 +47,7 @@
 				<ul class="menu pull-right">
 					<li ui-sref-active="current-menu-item"><a ui-sref="home">Home</a></li>
 					<li ui-sref-active="current-menu-item"><a ui-sref="quiz">Quiz</a></li>
-					<li ui-sref-active="current-menu-item"><a ui-sref="timeline">Timeline</a></li>
+					<li ng-if="ccCurrentUser" ui-sref-active="current-menu-item"><a ui-sref="timeline">Timeline</a></li>
 				</ul>
 			</nav>
 			

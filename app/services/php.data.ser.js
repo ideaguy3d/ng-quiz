@@ -7,40 +7,51 @@
     angular.module("MyApp").factory("phpDataSer", ["$http",
         function ($http) {
             const actionUrl = 'api/actions.php?';
+            const apiUrl = 'api/?';
+            let currentUser = {};
+            let curUser = "";
+            let curUserId = "";
 
             let loginSignup = function (data) {
                 let action = `action=${encodeURIComponent(data.loginSignup)}`;
                 let email = `&email=${encodeURIComponent(data.email)}`;
                 let password = `&password=${encodeURIComponent(data.password)}`;
                 let loginActive = `&loginActive=${encodeURIComponent(data.loginActive)}`;
-                return $http.get(actionUrl + action + email + password + loginActive);
+                let reqUrl = actionUrl + action + email + password + loginActive
+                    + curUser + curUserId;
+
+                return $http.get(reqUrl);
             };
 
             let getScores = function () {
-                return $http.get("api/?action=getScores&type=public");
+                return $http.get(apiUrl+"action=getScores&type=public");
+            };
+
+            let getScoresFromFollowing = function () {
+                return $http.get(apiUrl+"action=getScores&type=isFollowing"+curUserId);
             };
 
             let toggleFollow = function (data) {
                 let action = `action=${encodeURIComponent(data.action)}`;
                 let userToFollow = `&userToFollow=${encodeURIComponent(data.user)}`;
-                let curUser = `&curUser=${encodeURIComponent(currentUser.username)}`;
-                let curUserId = `&curUser=${encodeURIComponent(currentUser.userId)}`;
                 return $http.get(actionUrl + action + userToFollow + curUser + curUserId);
             };
 
-            let currentUser = {};
             let getCurrentUser = function () {
                 return currentUser;
             };
 
             let setCurrentUser = function (curUserInfo) {
-                console.log("setCurrentUser() invoked.");
                 currentUser.username = curUserInfo.username;
                 currentUser.userId = curUserInfo.userId;
+                curUser = `&curUser=${encodeURIComponent(currentUser.username)}`;
+                curUserId = `&curUserId=${encodeURIComponent(currentUser.userId)}`;
             };
+
             return {
                 loginSignup: loginSignup,
                 getScores: getScores,
+                getScoresFromFollowing: getScoresFromFollowing,
                 toggleFollow: toggleFollow,
                 setCurrentUser: setCurrentUser,
                 getCurrentUser: getCurrentUser

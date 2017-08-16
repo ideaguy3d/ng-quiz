@@ -1,3 +1,8 @@
 <div>
-	<h1>Scores from people you are following</h1>
+	<h1>From people you are following</h1>
+	<ul>
+		<li ng-repeat="scores in timeline.scoresFromFollowing">
+			<b>User-{{ scores.userid }}</b> said {{scores.comment}}
+		</li>
+	</ul>
 </div>
