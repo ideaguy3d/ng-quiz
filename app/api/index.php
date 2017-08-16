@@ -17,7 +17,8 @@ if ($_GET['action'] == 'getScores') {
     $curUserId = array_key_exists('curUserId', $_GET) ? $_GET['curUserId'] : ""; // use this to send back the currently logged in user info
     if ($type == 'public') {
         $whereClause = "";
-    } else if ($type == 'isFollowing') {
+    }
+    else if ($type == 'isFollowing') {
         // MAKE SURE $curUser is initialized !!!
         $query = "select * from isFollowing where follower = $curUserId limit 100";
         $result = mysqli_query($link, $query);
@@ -28,6 +29,8 @@ if ($_GET['action'] == 'getScores') {
             if ($whereClause == "") $whereClause = " WHERE ";
             else $whereClause .= " OR ";
             $whereClause .= "userid = " . $row['isFollowing'];
+            // $whereClause will end up looking like:
+            // " WHERE userid = xxx OR userid = yyy OR userid = zzz OR userid = etc
         }
     }
 
@@ -39,12 +42,18 @@ if ($_GET['action'] == 'getScores') {
         $scores = array();
 
         // get all the records from the db
-        while ($row = mysqli_fetch_assoc($result)) {
+        while ($row = @mysqli_fetch_assoc($result)) {
+            // get user info per user following
+            $userQuery = "SELECT email FROM users WHERE id = ".$row['userid']." LIMIT 1";
+            $userResult = mysqli_query($link, $userQuery);
+            $userRow = @mysqli_fetch_assoc($userResult);
+
+            $row['userEmail'] = $userRow;
             $row['zTimeSince'] = time_since(time() - strtotime($row['datetime']));
             array_push($scores, $row);
         }
 
-        // return JSON data
+        //-- return JSON data:
         echo json_encode($scores);
     }
 } else {

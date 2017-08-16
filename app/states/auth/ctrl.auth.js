@@ -41,9 +41,18 @@
                     password: vm.userPassword,
                     loginActive: "0"
                 };
-                phpDataSer.loginSignup(signupData).then((res) => {
+                phpDataSer.loginSignup(signupData).then(function (res) {
                     console.log(res.data);
-                    $location.url("/home")
+                    if(!parseInt(res.data)) { // there was an error i.e. wrong password, etc.
+                        vm.loginError = "ERROR: "+res.data;
+                    }  else {
+                        let userInfo = {
+                            username: vm.username,
+                            userId: res.data
+                        };
+                        phpDataSer.setCurrentUser(userInfo);
+                        $location.url("/home");
+                    }
                 });
             }
         }

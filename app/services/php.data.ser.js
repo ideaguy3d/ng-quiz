@@ -18,7 +18,7 @@
                 let password = `&password=${encodeURIComponent(data.password)}`;
                 let loginActive = `&loginActive=${encodeURIComponent(data.loginActive)}`;
                 let reqUrl = actionUrl + action + email + password + loginActive
-                    + curUser + curUserId;
+                             + curUser + curUserId;
 
                 return $http.get(reqUrl);
             };

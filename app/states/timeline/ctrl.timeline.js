@@ -10,6 +10,7 @@
             const vm = this;
             userIsLoggedIn();
             phpDataSer.getScoresFromFollowing().then(function(res){
+                console.log(res.data);
                 vm.scoresFromFollowing = res.data;
             });
         }
