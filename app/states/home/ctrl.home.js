@@ -5,9 +5,15 @@
     "use strict";
 
     angular.module("MyApp").controller('HomePageCtrl', ['phpDataSer',
-        function (phpDataSer) {
+        function (phpDataSer, recheckScoresRes) {
             const vm = this;
             vm.search = '';
+
+            phpDataSer.getScores().then(function (res) {
+                console.log("homeCtrl invoked ^_^");
+                console.log(res.data);
+                vm.scores = res.data;
+            });
 
             vm.searchFor = function () {
 
@@ -40,10 +46,6 @@
                         });
                 }
             };
-
-            phpDataSer.getScores().then(function (res) {
-                vm.scores = res.data;
-            });
         }
     ]);
 }());

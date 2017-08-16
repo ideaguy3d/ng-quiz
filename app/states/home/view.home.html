@@ -6,6 +6,7 @@
 		<md-content flex>
 			<md-list>
 				<md-list-item ng-repeat="score in homePage.scores">
+					
 					<!-- Recent Scores -->
 					<md-button>
 						<md-icon class="j-avatar" md-svg-src="assets/svg/coder1.svg"></md-icon>
@@ -15,7 +16,7 @@
 					<!-- Follow Button -->
 					<md-button class="md-raised" aria-label="Follow" style="width: 96px"
 					           ng-click="homePage.followUser(score.userid)" data-userId="{{ score.userid }}">
-						Follow
+						{{ score.followUnfollow }}
 					</md-button>
 				</md-list-item>
 			</md-list>

@@ -17,8 +17,7 @@ if ($_GET['action'] == 'getScores') {
     $curUserId = array_key_exists('curUserId', $_GET) ? $_GET['curUserId'] : ""; // use this to send back the currently logged in user info
     if ($type == 'public') {
         $whereClause = "";
-    }
-    else if ($type == 'isFollowing') {
+    } else if ($type == 'isFollowing') {
         // MAKE SURE $curUser is initialized !!!
         $query = "select * from isFollowing where follower = $curUserId limit 100";
         $result = mysqli_query($link, $query);
@@ -34,7 +33,7 @@ if ($_GET['action'] == 'getScores') {
         }
     }
 
-    $query = "select * from scores ".$whereClause." order by `datetime` desc limit 10";
+    $query = "select * from scores " . $whereClause . " order by `datetime` desc limit 10";
     $result = mysqli_query($link, $query);
     if (@mysqli_num_rows($result) == 0) {
         echo "no scores in database";
@@ -44,12 +43,24 @@ if ($_GET['action'] == 'getScores') {
         // get all the records from the db
         while ($row = @mysqli_fetch_assoc($result)) {
             // get user info per user following
-            $userQuery = "SELECT email FROM users WHERE id = ".$row['userid']." LIMIT 1";
+            $useridReal = mysqli_real_escape_string($link, $row['userid']);
+            $userQuery = "SELECT email FROM users WHERE id = " . $useridReal . " LIMIT 1";
             $userResult = mysqli_query($link, $userQuery);
             $userRow = @mysqli_fetch_assoc($userResult);
 
+            $isFollowingQuery = "SELECT * FROM isFollowing WHERE follower = $curUserId AND isFollowing = "
+                                .$useridReal." LIMIT 1";
+            $isFollowingQueryResult = mysqli_query($link, $isFollowingQuery);
+            if(@mysqli_num_rows($isFollowingQueryResult) > 0) {
+                $row['followUnfollow'] = 'unfollow';
+            } else {
+                $row['followUnfollow'] = 'follow';
+            }
+
+            // add custom keys for the json
             $row['userEmail'] = $userRow;
             $row['zTimeSince'] = time_since(time() - strtotime($row['datetime']));
+
             array_push($scores, $row);
         }
 

@@ -10,7 +10,14 @@
                     url: '/home',
                     templateUrl: './states/home/view.home.html',
                     controller: 'HomePageCtrl',
-                    controllerAs: 'homePage'
+                    controllerAs: 'homePage',
+                    resolve: {
+                        recheckScoresRes: function(phpDataSer){
+                            return phpDataSer.getScores().then(function (res) {
+                                return res.data;
+                            })
+                        }
+                    }
                 })
                 .state('quiz', {
                     url: '/quiz',
