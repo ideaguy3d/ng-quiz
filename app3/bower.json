@@ -1,0 +1,23 @@
+{
+  "name": "julius",
+  "homepage": "https://github.com/ideaguy3d/ng-quiz",
+  "authors": [
+    "Julius Alvarado <angularjs.uiux@gmail.com>"
+  ],
+  "description": "javascript",
+  "main": "",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-material": "^1.1.4",
+    "angular-material-icons": "^0.7.1",
+    "font-awesome": "^4.7.0"
+  }
+}
