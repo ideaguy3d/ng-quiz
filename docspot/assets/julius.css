@@ -1,0 +1,29 @@
+body {
+  font-family: 'Roboto', sans-serif; }
+
+#j-container {
+  margin: auto;
+  width: 90%;
+  text-align: center; }
+  #j-container h1 {
+    background-color: #434343;
+    color: whitesmoke;
+    padding: 6px; }
+  #j-container .j-grid-wrapper {
+    display: inline-block; }
+  #j-container .j-row {
+    margin: 4px;
+    display: block; }
+  #j-container .j-box {
+    margin: 2px;
+    border: 1px solid dimgrey;
+    height: 93px;
+    padding: 4px;
+    display: inline-block; }
+    #j-container .j-box .dscom {
+      margin-top: 34px;
+      font-weight: lighter;
+      color: dimgrey; }
+  @media screen and (max-width: 530px) {
+    #j-container .j-box {
+      width: 100%; } }

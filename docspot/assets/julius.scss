@@ -1,0 +1,47 @@
+$j-box-height: 93px; // manually set height to be equal to width knowing I put "docspot.com" in box
+$dscom-mt: 34px; // because I know the height of each box is 93px, so this is about half way down
+
+body {
+	font-family: 'Roboto', sans-serif;
+}
+
+#j-container {
+	margin: auto;
+	width: 90%;
+	text-align: center;
+	h1 {
+		background-color: #434343;
+		color: whitesmoke;
+		padding: 6px;
+	}
+	
+	.j-grid-wrapper {
+		display: inline-block;
+	}
+	
+	.j-row {
+		margin: 4px;
+		display: block;
+	}
+	
+	.j-box  {
+		margin: 2px;
+		border: 1px solid dimgrey;
+		height: $j-box-height;
+		padding: 4px;
+		display: inline-block;
+		
+		.dscom {
+			margin-top: $dscom-mt;
+			font-weight: lighter;
+			color: dimgrey;
+		}
+	}
+	
+	// responsive design code
+	@media screen and (max-width: 530px) {
+		.j-box {
+			width: 100%;
+		}
+	}
+}
