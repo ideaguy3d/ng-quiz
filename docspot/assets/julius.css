@@ -13,17 +13,22 @@ body {
     display: inline-block; }
   #j-container .j-row {
     margin: 4px;
-    display: block; }
+    display: block;
+    max-height: 107px; }
   #j-container .j-box {
     margin: 2px;
     border: 1px solid dimgrey;
     height: 93px;
     padding: 4px;
-    display: inline-block; }
+    display: inline-block;
+    min-width: 102px;
+    max-width: 103px;
+    word-wrap: normal; }
     #j-container .j-box .dscom {
       margin-top: 34px;
       font-weight: lighter;
-      color: ora; }
+      color: dimgrey; }
   @media screen and (max-width: 530px) {
     #j-container .j-box {
-      width: 100%; } }
+      width: 100%;
+      max-width: 300px; } }
