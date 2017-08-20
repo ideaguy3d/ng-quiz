@@ -6,11 +6,17 @@
     "use strict";
 
     angular.module('app', ['ui.router', 'ngMdIcons', 'ngMessages', 'ngMaterial'])
+        .config(function($mdThemingProvider){
+            $mdThemingProvider.theme('default')
+                .primaryPalette('blue')
+                .accentPalette('red');
+        })
         .config(function ($stateProvider, $urlRouterProvider) {
             $stateProvider
                 .state('home', {
                     url: '/home',
-                    templateUrl: 'states/home/view.home.html'
+                    templateUrl: 'states/home/view.home.html',
+                    controller: 'HomeCtrl as home'
                 })
                 .state('about', {
                     url: '/about',

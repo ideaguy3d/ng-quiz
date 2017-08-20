@@ -1,0 +1,18 @@
+<md-sidenav md-is-locked-open="$mdMedia('gt-sm')"
+            md-component-id="left"
+            class="md-sidenav-left md-whiteframe-2dp">
+	<md-toolbar>
+		<h2>{{ home.message }}</h2>
+	</md-toolbar>
+	<md-content>
+		<md-list >
+			<md-list-item ng-repeat="score in home.scores  | orderBy:'-score'">
+				<md-button ng-click="home.selectUser(score.userid)" flex
+						ng-class="{'selected': score.userid === home.selected}">
+					<md-icon md-svg-src="assets/svg/robot1.svg" class="avatar"></md-icon>
+					User-{{ score.userid }} Scored {{ score.score }}%
+				</md-button>
+			</md-list-item>
+		</md-list>
+	</md-content>
+</md-sidenav>

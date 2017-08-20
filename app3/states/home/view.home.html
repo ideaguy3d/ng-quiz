@@ -1,3 +1,20 @@
-<div>
-	<h1>Home State ^_^</h1>
+<div style="height: 90%" layout="row">
+	<!-- ce1 - Sidenav -->
+	<div ng-include="'states/home/includes/in.sidenav.html'" layout="vertical"></div>
+	
+	<!-- ce2 - Main Content -->
+	<div layout="column" flex>
+		<md-toolbar class="blue">
+			<div class="md-toolbar-tools">
+				<md-button hide-gt-sm class="md-icon-button" ng-click="home.toggleSidenav()">
+					<ng-md-icon icon="view_headline"></ng-md-icon>
+				</md-button>
+				<h1>Software Application</h1>
+			</div>
+		</md-toolbar>
+		<md-content>
+			<div ng-include="'states/home/includes/in.content.html'"
+			     layout-gt-sm="column" layout-sm="row"></div>
+		</md-content>
+	</div>
 </div>

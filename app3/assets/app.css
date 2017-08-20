@@ -1,1 +1,43 @@
 
+.red {
+    background-color: indianred;
+}
+
+.green {
+    background-color: #b3e0e8;
+}
+
+.blue {
+    background-color: cornflowerblue;
+}
+
+.purple {
+    background-color: mediumpurple;
+}
+
+md-toolbar h2 {
+    margin: auto;
+}
+
+.selected {
+    background-color: lightblue;
+}
+
+.avatar {
+    position: relative;
+    width: 128px;
+    height: 128px;
+    border: 2px solid #3e4f56;
+    border-radius: 50%;
+    display: inline-block;
+    overflow: hidden;
+    margin: 0;
+    vertical-align: middle;
+    zoom: 0.70;
+
+    -webkit-transform: translateZ(0) scale(0.7);
+    -moz-transform: translateZ(0) scale(0.7);
+    -ms-transform: translateZ(0) scale(0.7);
+    -o-transform: translateZ(0) scale(0.7);
+    transform: translateZ(0) scale(0.7);
+}
