@@ -1,16 +1,31 @@
 <md-sidenav md-is-locked-open="$mdMedia('gt-sm')"
             md-component-id="left"
             class="md-sidenav-left md-whiteframe-2dp">
+	<!-- header -->
 	<md-toolbar>
-		<h2>{{ home.message }}</h2>
+		<h2>{{ home.sidebarMessage }}</h2>
 	</md-toolbar>
+	
+	<!-- search -->
+	<div class="layout-padding">
+		<md-autocomplete md-search-text="home.searchText"
+				md-items="item in home.scores | filter:home.searchText"
+                md-item-text="item.name" md-min-length="2" placeholder="search...">
+			<md-item-template>
+					<span md-highlight-text="home.searchText" md-highlight-flags="^i">{{ item.name }}</span>
+			</md-item-template>
+			<md-not-found>Nothing found for "{{ home.searchText }}"</md-not-found>
+		</md-autocomplete>
+	</div>
+	
+	<!-- content -->
 	<md-content>
 		<md-list >
-			<md-list-item ng-repeat="score in home.scores  | orderBy:'-score'">
-				<md-button ng-click="home.selectUser(score.userid)" flex
-						ng-class="{'selected': score.userid === home.selected}">
+			<md-list-item ng-repeat="score in home.scores | filter:home.searchText | orderBy:'-score'">
+				<md-button ng-click="home.selectUser(score)" flex
+						ng-class="{'selected': score.name === home.selected}">
 					<md-icon md-svg-src="assets/svg/robot1.svg" class="avatar"></md-icon>
-					User-{{ score.userid }} Scored {{ score.score }}%
+					{{ score.name }} Scored {{ score.score }}%
 				</md-button>
 			</md-list-item>
 		</md-list>

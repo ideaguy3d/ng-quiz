@@ -9,23 +9,34 @@
         .controller('HomeCtrl', ['$mdSidenav', 'phpDataService',
             function ($mdSidenav, phpDataService) {
                 let vm = this;
-                vm.message = "Highest Scores";
+
+                // just for more data to practice on
+                const fakeNamesArr = ["Julius Hernandez", "Jessica O'Kelly", "Jennifer Smith", "Joseph Garcia",
+                    "Micheal Silva", "Michelle Costa", "Johnathan Gomez", "Veronica de'Leon",
+                    "Kevin Jacobs", "Kelly Rhodes", "Cynthia Riley", "Charles"];
+
+                vm.sidebarMessage = "Recent Scores";
                 vm.selected = null;
+                vm.searchText = "";
 
                 phpDataService.getScores().then(function (res) {
                     vm.scores = res.data;
-                    vm.selected = vm.scores[0].userid;
+                    for (let i = 0; i < vm.scores.length; i++) {
+                        let obj = vm.scores[i];
+                        obj.name = fakeNamesArr[i];
+                    }
+                    vm.selected = vm.scores[0];
                 });
 
                 vm.toggleSidenav = function () {
                     $mdSidenav('left').toggle();
                 };
 
-                vm.selectUser = function (uid) {
-                    vm.selected = uid;
-                    console.log("vm.selected = " + vm.selected);
+                vm.selectUser = function (item) {
+                    console.log("selected item = "+ item);
+                    vm.selected = item;
                     const sidenav = $mdSidenav('left');
-                    if(sidenav.isOpen()) {
+                    if (sidenav.isOpen()) {
                         sidenav.close();
                     }
                 };

@@ -19,8 +19,25 @@ md-toolbar h2 {
     margin: auto;
 }
 
-.selected {
+md-list .md-button.selected {
     background-color: lightblue;
+}
+
+/**
+overwriting ng-md
+**/
+md-list-item.md-no-proxy,
+md-list-item .md-no-style {
+    padding: 0 2px;
+}
+
+md-list .md-button {
+    width: 100%;
+    text-align: left;
+}
+
+md-list-item {
+    width: 100%;
 }
 
 .avatar {
