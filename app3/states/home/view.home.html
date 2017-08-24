@@ -1,3 +1,4 @@
+<!-- view.ctrl="HomeCtrl" -->
 <div style="height: 90%" layout="row">
 	<!-- ce1 - Sidenav -->
 	<div ng-include="'states/home/includes/in.sidenav.html'" layout="vertical"></div>
@@ -13,8 +14,16 @@
 			</div>
 		</md-toolbar>
 		<md-content>
-			<div ng-include="'states/home/includes/in.content.html'"
-			     layout-gt-sm="column" layout-sm="row"></div>
+			<div ng-include="'states/home/includes/in.content.html'" layout-gt-sm="column" layout-sm="row"></div>
+			
+			<md-tabs md-selected="home.tabIndex" md-dynamic-height md-stretch-tabs="always">
+				<md-tab label="Comments">
+					<div ng-include="'states/home/includes/in.bio.tab.html'"></div>
+				</md-tab>
+				<md-tab label="Notes">
+					<div ng-include="'states/home/includes/in.notes.tab.html'"></div>
+				</md-tab>
+			</md-tabs>
 		</md-content>
 	</div>
 </div>
