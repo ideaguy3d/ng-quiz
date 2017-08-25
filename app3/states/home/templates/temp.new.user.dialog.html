@@ -1,0 +1,12 @@
+<md-dialog>
+	<form name="userForm" ng-submit="homeDialog.save()">
+		<md-dialog-content>
+			Content, {{ homeDialog.homeDialogMessage }}
+		</md-dialog-content>
+		
+		<md-dialog-actions layout="row">
+			<md-button ng-click="homeDialog.cancel()">Cancel</md-button>
+			<md-button type="submit" class="md-primary md-raised">Save</md-button>
+		</md-dialog-actions>
+	</form>
+</md-dialog>

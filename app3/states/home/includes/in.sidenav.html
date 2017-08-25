@@ -19,8 +19,8 @@
 	</div>
 	
 	<!-- content -->
-	<md-content>
-		<md-list >
+	<md-content class="j-scrollable-nav-content">
+		<md-list>
 			<md-list-item ng-repeat="score in home.scores | filter:home.searchText | orderBy:'-score'">
 				<md-button ng-click="home.selectUser(score)" flex
 						ng-class="{'selected': score.name === home.selected}">
@@ -30,4 +30,7 @@
 			</md-list-item>
 		</md-list>
 	</md-content>
+	<md-button class="md-fab md-fab-bottom-right" ng-click="home.addUser($event)">
+		<ng-md-icon icon="add"></ng-md-icon>
+	</md-button>
 </md-sidenav>

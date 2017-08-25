@@ -40,6 +40,15 @@ md-list-item {
     width: 100%;
 }
 
+.j-scrollable-nav-content {
+    position: absolute;
+    top: 136px;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    overflow: auto;
+ }
+
 .avatar {
     position: relative;
     width: 128px;
@@ -58,3 +67,4 @@ md-list-item {
     -o-transform: translateZ(0) scale(0.7);
     transform: translateZ(0) scale(0.7);
 }
+
