@@ -13,7 +13,7 @@
             vm.homeDialogMessage = 'This is from AddUserDialogCtrl';
 
             vm.save = function () {
-                $mdDialog.hide(function (res) {
+                $mdDialog.hide().then(function (res) {
                     console.log("save response = ");
                     console.log(res);
                 });

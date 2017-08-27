@@ -5,8 +5,9 @@
 (function () {
     "use strict";
 
-    angular.module('app').controller('HomeCtrl', ['$mdSidenav', '$mdToast', '$mdDialog', '$mdMedia', 'phpDataService',
-            function ($mdSidenav, $mdToast, $mdDialog, $mdMedia, phpDataService) {
+    angular.module('app').controller('HomeCtrl', ['$mdSidenav', '$mdToast', '' +
+        '$mdDialog', '$mdMedia', '$mdBottomSheet', 'phpDataService',
+            function ($mdSidenav, $mdToast, $mdDialog, $mdMedia, $mdBottomSheet, phpDataService) {
                 let vm = this;
 
                 // just for more data to practice on
@@ -30,6 +31,7 @@
                     vm.selected = vm.scores[3];
                     vm.selected.notes.push({title: "remember to run $tsc command in the same folder as the tsconfig.js file"})
                     vm.selected.notes.push({title: "learn more about ts generics and interfaces"});
+                    vm.clickedRecentScore(vm.selected);
                 });
 
                 vm.addUser = function ($ev) {
@@ -53,9 +55,24 @@
                     let confirm = $mdDialog.confirm().title('Delete all notes?')
                         .textContent('All the notes will be deleted')
                         .targetEvent($event).ok('Yes').cancel('No');
+
                     $mdDialog.show(confirm).then(function () {
                         vm.selected.notes = [];
                         openToast('All Notes Cleared');
+                    });
+                };
+
+                vm.showContactOptions = function($eve) {
+                    phpDataService.clickedRecentScore(vm.selected);
+                    $mdBottomSheet.show({
+                        parent: angular.element(document.getElementById('j-main-content')),
+                        templateUrl: './states/home/templates/temp.contact.sheet.html',
+                        controller: 'ContactPanelCtrl',
+                        controllerAs: 'contactPanel',
+                        bindToController: true,
+                        targetEvent: $eve
+                    }).then(function(clickedItem){
+                        clickedItem && console.log(clickedItem.name + ' clicked.');
                     });
                 };
 
@@ -65,6 +82,7 @@
 
                 vm.selectUser = function (item) {
                     vm.selected = item;
+                    phpDataService.clickedRecentScore(vm.selected);
                     const sidenav = $mdSidenav('left');
                     if (sidenav.isOpen()) {
                         sidenav.close();

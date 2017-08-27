@@ -9,6 +9,7 @@
             const actionUrl = 'http://localhost/ng-quiz/app/api/actions.php?';
             const apiUrl = 'http://localhost/ng-quiz/app/api/?';
             let currentUser = {};
+            let clickedRecentScoreObj = {};
             let curUser = "";
             let curUserId = "";
 
@@ -48,6 +49,10 @@
                 curUserId = `&curUserId=${encodeURIComponent(currentUser.userId)}`;
             };
 
+            let clickedRecentScore = function(score){
+                if(score) clickedRecentScoreObj = score;
+                return clickedRecentScoreObj;
+            };
 
             return {
                 loginSignup: loginSignup,
@@ -55,7 +60,8 @@
                 getScoresFromFollowing: getScoresFromFollowing,
                 toggleFollow: toggleFollow,
                 setCurrentUser: setCurrentUser,
-                getCurrentUser: getCurrentUser
+                getCurrentUser: getCurrentUser,
+                clickedRecentScore: clickedRecentScore
             }
         }
     ]);
