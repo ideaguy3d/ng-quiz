@@ -68,3 +68,7 @@ md-list-item {
     transform: translateZ(0) scale(0.7);
 }
 
+.date-row {
+    margin: 16px 0;
+}
+

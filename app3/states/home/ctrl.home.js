@@ -15,11 +15,14 @@
                     "Micheal Silva", "Michelle Costa", "Johnathan Gomez", "Veronica de'Leon",
                     "Kevin Jacobs", "Kelly Rhodes", "Cynthia Riley", "Charles"];
 
-                vm.sidebarMessage = "Recent Scores";
+                vm.sidebarMessage = "Recent Users";
                 vm.selected = null;
                 vm.searchText = "";
                 vm.tabIndex = 0;
                 vm.isSpeedDialOpen = true;
+                vm.scores = []; // scores gets initialized in phpDataService.getScores().then();
+                vm.selected = {}; // scores gets initialized in phpDataService.getScores().then();
+                vm.newNote = {};
 
                 phpDataService.getScores().then(function (res) {
                     vm.scores = res.data;
@@ -31,8 +34,14 @@
                     vm.selected = vm.scores[3];
                     vm.selected.notes.push({title: "remember to run $tsc command in the same folder as the tsconfig.js file"})
                     vm.selected.notes.push({title: "learn more about ts generics and interfaces"});
-                    vm.clickedRecentScore(vm.selected);
+                    phpDataService.clickedRecentScore(vm.selected);
                 });
+
+                vm.addNote = function(){
+                    vm.selected.notes.push(vm.newNote);
+                    vm.newNote = {};
+                    openToast("Note Added");
+                };
 
                 vm.addUser = function ($ev) {
                     let useFullScreen = $mdMedia('sm') || $mdMedia('xs');
@@ -44,7 +53,10 @@
                         controllerAs: 'homeDialog',
                         clickOutsideToClose: true,
                         fullscreen: useFullScreen
-                    }).then(function success(user) {
+                    }).then(function success(createUserType) {
+                        createUserType.setName();
+                        vm.scores.push(createUserType);
+                        vm.selectUser(createUserType);
                         openToast('User Added');
                     }, function dismissed() {
                         console.log('Cancelled dialog');

@@ -1,3 +1,4 @@
+<!-- ctrl="HomeCtrl" -->
 <md-sidenav md-is-locked-open="$mdMedia('gt-sm')"
             md-component-id="left"
             class="md-sidenav-left md-whiteframe-2dp">
@@ -21,11 +22,11 @@
 	<!-- content -->
 	<md-content class="j-scrollable-nav-content">
 		<md-list>
-			<md-list-item ng-repeat="score in home.scores | filter:home.searchText | orderBy:'-score'">
+			<md-list-item ng-repeat="score in home.scores | filter:home.searchText | orderBy:'name'">
 				<md-button ng-click="home.selectUser(score)" flex
 						ng-class="{'selected': score.name === home.selected}">
 					<md-icon md-svg-src="assets/svg/robot1.svg" class="avatar"></md-icon>
-					{{ score.name }} Scored {{ score.score }}%
+					{{ score.name }}
 				</md-button>
 			</md-list-item>
 		</md-list>

@@ -1,5 +1,14 @@
+<!-- ctrl="ContactPanelCtrl" -->
 <md-bottom-sheet>
 	<md-subheader>
 		Contact: {{ contactPanel.user.name }}
 	</md-subheader>
+	<md-list>
+		<md-item ng-repeat="item in contactPanel.actions">
+			<md-button id="item_{{ $index }}" ng-click="contactPanel.submitContact(item)">
+				<md-icon md-svg-icon="{{ item.icon }}"></md-icon>
+				{{ item.name }}
+			</md-button>
+		</md-item>
+	</md-list>
 </md-bottom-sheet>

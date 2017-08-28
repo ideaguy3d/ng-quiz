@@ -1,5 +1,25 @@
-<p ng-if="!home.selected.notes.length">{{ home.selected.name }} has no notes</p>
+<!-- ctrl=HomeCtrl as home -->
+<md-content layout-padding>
+	<form name="noteForm" ng-submit="home.addNote()">
+		<div layout-gt-xs="row"><!-- if the screen is greater than small layout=row -->
+			<md-input-container class="md-block" flex-gt-xs>
+				<label>Title</label>
+				<input name="title" ng-model="home.newNote.title" required>
+				<div ng-messages="noteForm.title.$error">
+					<div ng-message="required">This is required.</div>
+				</div>
+			</md-input-container>
+			<md-datepicker ng-model="home.newNote.data" md-placeholder="Pick Date" class="date-row"></md-datepicker>
+			<div class="md-actions">
+				<md-button type="submit" class="md-primary md-raised date-row"
+				           ng-disabled="noteForm.$invalid"> Add
+				</md-button>
+			</div>
+		</div>
+	</form>
+</md-content>
 <md-content>
+	<p ng-if="!home.selected.notes.length">{{ home.selected.name }} has no notes</p>
 	<md-card ng-repeat="note in home.selected.notes | orderBy:'-date':true">
 		<md-card-content>
 			<h3>{{ note.title }}</h3>

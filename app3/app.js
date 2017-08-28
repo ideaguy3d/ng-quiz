@@ -6,10 +6,16 @@
     "use strict";
 
     angular.module('app', ['ui.router', 'ngMdIcons', 'ngMessages', 'ngMaterial'])
-        .config(function($mdThemingProvider){
+        .config(function($mdThemingProvider, $mdIconProvider){
             $mdThemingProvider.theme('default')
                 .primaryPalette('blue')
                 .accentPalette('red');
+
+            $mdIconProvider.icon('google_plus', './assets/svg/google_plus.svg')
+                .icon('hangouts', './assets/svg/hangouts.svg', 512)
+                .icon('twitter', './assets/svg/twitter.svg', 512)
+                .icon('phone', './assets/svg/phone.svg', 512)
+                .icon('menu', './assets/svg/menu.svg', 512);
         })
         .config(function ($stateProvider, $urlRouterProvider) {
             $stateProvider
