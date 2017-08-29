@@ -37,9 +37,17 @@
                     phpDataService.clickedRecentScore(vm.selected);
                 });
 
+                vm.formScope = {};
+                vm.setFormScope = function(scope){
+                    vm.formScope = scope;
+                };
                 vm.addNote = function(){
                     vm.selected.notes.push(vm.newNote);
+                    //-- reset form:
+                    vm.formScope.noteForm.$setUntouched();
+                    vm.formScope.noteForm.$setPristine();
                     vm.newNote = {};
+
                     openToast("Note Added");
                 };
 
